@@ -125,7 +125,7 @@ def linear(
     output_shape = (input.shape[0], other.shape[0])
     output = torch.empty(output_shape, dtype=input.dtype, device=input.device)
     if bias is not None:
-        kernel["with_bias"](input, other, output, bias)
+        kernel["with_bias"](input, other, output, bias.view(1, -1))
     else:
         kernel["no_bias"](input, other, output)
 
